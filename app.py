@@ -16,15 +16,17 @@ st.markdown(f"""
             background-position: center;
             background-repeat: no-repeat;
         }}
-       .title {{
-            color: #fff;
+      .title {{
+            color: #ffffff;
             text-align: center;
+            font-size: 40px;
+            font-weight: bold;
             text-shadow: 2px 2px 4px #000000;
         }}
         .sub {{
             text-align: center;
             font-size: 18px;
-            color: #e0e0e0;
+            color: #f0f0f0;
             text-shadow: 1px 1px 2px #000000;
         }}
         .kelompok-container {{
@@ -32,18 +34,22 @@ st.markdown(f"""
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            margin-top: -10px;
-            margin-bottom: 10px;
+            margin-top: 20px;
         }}
         .kelompok-text {{
             text-align: center;
             font-size: 18px;
             color: #ffffff;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: 'Comic Sans MS', cursive;
             text-shadow: 1px 1px 2px #000000;
         }}
-        .stMarkdown, .stText, .stButton>button, .stRadio label, .stSelectbox label, .stNumberInput label {{
-            color: #ffffff !important;
+        .divider {{
+            border-top: 2px solid white;
+            width: 100%;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }}
+        .info, .warning {{
             text-shadow: 1px 1px 2px #000000;
         }}
     </style>
