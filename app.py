@@ -321,8 +321,8 @@ def halaman_konversi():
 
 # ----------------- Halaman lainnya -----------------
 def halaman_utama():
-    st.markdown("<h1 class='title'>⚗️ Selamat Datang di My Concentration ⚗️</h1>", unsafe_allow_html=True)
     st.markdown("""
+        <h1 class='title'>⚗️ Selamat Datang di My Concentration ⚗️</h1>
         <div class='kelompok-container'>
             <p class='kelompok-text'>🤖 Dibuat oleh <b>Kelompok 11</b> 💙</p>
             <p class='kelompok-text'>Arsal 🎩, Danish ✨, Hanna 🌸, Raffi 🎮, Yasifa 🎀</p>
@@ -336,7 +336,6 @@ def halaman_utama():
     """, unsafe_allow_html=True)
     if st.button("Selanjutnya ➡"):
         st.session_state["halaman"] = "menu"
-
 
 def halaman_menu():
     st.markdown("<h2 class='title'>📂 Menu Utama</h2>", unsafe_allow_html=True)
