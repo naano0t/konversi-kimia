@@ -4,7 +4,7 @@ from PIL import Image
 import base64
 import io
 
-image_path = "background.png"
+image_path = "web nackground.png"
 with open(image_path, "rb") as image_file:
     encoded = base64.b64encode(image_file.read()).decode()
 
