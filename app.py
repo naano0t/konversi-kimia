@@ -152,7 +152,7 @@ def halaman_konversi():
 
     if kategori == "PPM":
         ppm = st.number_input("Masukkan nilai PPM (mg/L):", step=0.1)
-        jenis = st.selectbox("Konversi ke:", ["mg/L", "Molaritas", "Normalitas", "% b/v", "% w/v", "b/b", "%v/v"])
+        jenis = st.selectbox("Konversi ke:", ["mg/L", "Molaritas", "Normalitas", "% b/v", "% w/v", "% b/b", "% v/v"])
         
         if jenis == "mg/L":
             if st.button("Konversi"):
@@ -175,8 +175,8 @@ def halaman_konversi():
                 st.success(f"Hasil: {hasil:.6f} N")
                 st.latex(r"N = \frac{PPM}{BE \times 1000}")
                 st.latex(rf"N = \frac{{{ppm}}}{{{eq} \times 1000}} = {hasil:.6f} \, N")
-
-       elif jenis == "% b/v":
+            
+        elif jenis == "% b/v":
             dens = st.number_input("Masukkan densitas larutan (g/mL):", step=0.001)
             if st.button("Konversi"):
                 hasil = ppm_to_bv(ppm, dens)
@@ -209,7 +209,7 @@ def halaman_konversi():
 
     elif kategori == "Molaritas":
         mol = st.number_input("Masukkan Molaritas (mol/L):", step=0.001)
-        jenis = st.selectbox("Konversi ke:", ["PPM", "Normalitas", "% b/v", "% w/v", "%b/b", "%v/v"])
+        jenis = st.selectbox("Konversi ke:", ["PPM", "Normalitas", "% b/v", "% w/v", "% b/b", "% v/v"])
 
         if jenis == "PPM":
             mr = st.number_input("Masukkan Mr:", step=0.01)
@@ -260,7 +260,7 @@ def halaman_konversi():
 
     elif kategori == "Normalitas":
         norm = st.number_input("Masukkan Normalitas (N):", step=0.001)
-        jenis = st.selectbox("Konversi ke:", ["PPM", "Molaritas", "% b/v", "% w/v", "%b/b", "%v/v"])
+        jenis = st.selectbox("Konversi ke:", ["PPM", "Molaritas", "% b/v", "% w/v", "% b/b", "% v/v"])
 
         if jenis == "PPM":
             eq = st.number_input("Masukkan berat ekuivalen:", step=0.01)
