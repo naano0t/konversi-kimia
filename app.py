@@ -69,114 +69,71 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# ----------------- Fungsi konversi tambahan -----------------
-def ppm_to_molaritas(ppm, mr):
-    try:
-        return ppm / (mr * 1000)
-    except:
-        return None
+def konversi_dua_arah():
+    st.markdown("## 🔄 Konversi Dua Arah Konsentrasi")
 
-def ppm_to_normalitas(ppm, eq_weight):
-    try:
-        return ppm / (eq_weight * 1000)
-    except:
-        return None
+    semua_opsi = ["PPM", "Molaritas", "Normalitas", "% b/v", "% w/v", "% b/b", "% v/v"]
 
-def ppm_to_bv(ppm, density):
-    try:
-        return ppm / (density * 10)
-    except:
-        return None
+    dari = st.selectbox("Konversi dari:", semua_opsi)
+    ke = st.selectbox("Konversi ke:", semua_opsi)
 
-def ppm_to_wv(ppm):
-    try:
-        return ppm / 10000
-    except:
-        return None
+    nilai = st.number_input(f"Masukkan nilai dalam {dari}:", step=0.001)
 
-def ppm_to_bb(ppm, density):
-    try:
-        return ppm / (density * 10)
-    except:
-        return None
+    mr = st.number_input("Mr (jika diperlukan):", step=0.01)
+    eq = st.number_input("Berat ekuivalen (jika diperlukan):", step=0.01)
+    val = st.number_input("Valensi (jika diperlukan):", step=1)
+    dens = st.number_input("Densitas (g/mL, jika diperlukan):", step=0.001)
 
-def ppm_to_vv(ppm, density):
-    try:
-        return ppm / (density * 10)
-    except:
-        return None
+    hasil = None
 
-def molaritas_to_ppm(molaritas, mr):
-    try:
-        return molaritas * mr * 1000
-    except:
-        return None
+    if st.button("Konversi"):
+        if dari == "PPM" and ke == "Molaritas":
+            hasil = ppm_to_molaritas(nilai, mr)
+        elif dari == "PPM" and ke == "Normalitas":
+            hasil = ppm_to_normalitas(nilai, eq)
+        elif dari == "PPM" and ke == "% b/v":
+            hasil = ppm_to_bv(nilai, dens)
+        elif dari == "PPM" and ke == "% w/v":
+            hasil = ppm_to_wv(nilai)
+        elif dari == "PPM" and ke == "% b/b":
+            hasil = ppm_to_bb(nilai, dens)
+        elif dari == "PPM" and ke == "% v/v":
+            hasil = ppm_to_vv(nilai, dens)
 
-def molaritas_to_bv(molaritas, mr, density):
-    try:
-        return (molaritas * mr) / (density * 10)
-    except:
-        return None
+        elif dari == "Molaritas" and ke == "PPM":
+            hasil = molaritas_to_ppm(nilai, mr)
+        elif dari == "Molaritas" and ke == "Normalitas":
+            hasil = molaritas_to_normalitas(nilai, val)
+        elif dari == "Molaritas" and ke == "% b/v":
+            hasil = molaritas_to_bv(nilai, mr, dens)
+        elif dari == "Molaritas" and ke == "% w/v":
+            hasil = molaritas_to_wv(nilai, mr)
+        elif dari == "Molaritas" and ke == "% b/b":
+            hasil = molaritas_to_bb(nilai, mr, dens)
+        elif dari == "Molaritas" and ke == "% v/v":
+            hasil = molaritas_to_vv(nilai, mr, dens)
 
-def molaritas_to_wv(molaritas, mr):
-    try:
-        return molaritas * mr / 10
-    except:
-        return None
+        elif dari == "Normalitas" and ke == "PPM":
+            hasil = normalitas_to_ppm(nilai, eq)
+        elif dari == "Normalitas" and ke == "Molaritas":
+            hasil = normalitas_to_molaritas(nilai, val)
+        elif dari == "Normalitas" and ke == "% w/v":
+            hasil = normalitas_to_wv(nilai, eq)
+        elif dari == "Normalitas" and ke == "% b/v":
+            hasil = normalitas_to_bv(nilai, eq, dens)
+        elif dari == "Normalitas" and ke == "% b/b":
+            hasil = normalitas_to_bb(nilai, eq, dens)
+        elif dari == "Normalitas" and ke == "% v/v":
+            hasil = normalitas_to_vv(nilai, eq, dens)
 
-def molaritas_to_bb(molaritas, mr, density):
-    try:
-        return (molaritas * mr) / (density * 10)
-    except:
-        return None
+        if hasil is not None:
+            st.success(f"Hasil: {hasil:.6f} {ke}")
+        else:
+            st.warning("Konversi tidak tersedia atau parameter kurang.")
 
-def molaritas_to_vv(molaritas, mr, density):
-    try:
-        return (molaritas * mr) / (density * 10)
-    except:
-        return None
+# Tambahkan ke menu utama jika diinginkan
+# konversi_dua_arah()
 
-def normalitas_to_ppm(normalitas, eq_weight):
-    try:
-        return normalitas * eq_weight * 1000
-    except:
-        return None
-
-def molaritas_to_normalitas(molaritas, valensi):
-    try:
-        return molaritas * valensi
-    except:
-        return None
-
-def normalitas_to_molaritas(normalitas, valensi):
-    try:
-        return normalitas / valensi
-    except:
-        return None
-
-def normalitas_to_wv(normalitas, eq_weight):
-    try:
-        return (normalitas * eq_weight) / 10
-    except:
-        return None
-
-def normalitas_to_bv(normalitas, eq_weight, density):
-    try:
-        return (normalitas * eq_weight) / (density * 10)
-    except:
-        return None
-
-def normalitas_to_bb(normalitas, eq_weight, density):
-    try:
-        return (normalitas * eq_weight) / (density * 10)
-    except:
-        return None
-
-def normalitas_to_vv(normalitas, eq_weight, density):
-    try:
-        return (normalitas * eq_weight) / (density * 10)
-    except:
-        return None
 
 
 # ----------------- Halaman Konversi -----------------
