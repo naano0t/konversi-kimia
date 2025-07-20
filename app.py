@@ -323,18 +323,17 @@ def halaman_konversi():
 def halaman_utama():
     st.markdown("<h1 class='title'>⚗️ Selamat Datang di My Concentration ⚗️</h1>", unsafe_allow_html=True)
     st.markdown("""
-        <p class='group'>✨ Kelompok 11: Arsal, Danish, Hanna, Raffi, Yasifa ✨</p>
-    """, unsafe_allow_html=True)
-    st.markdown("""
+        <p class='kelompok'>👩‍🔬 Kelompok 11: Arsal, Danish, Hanna, Raffi, Yasifa 👨‍🔬</p>
         <p class='sub'>
             🔍 Bingung konversi PPM ke Molaritas atau Normalitas? <br>
             🚀 Yuk, gunakan <strong>My Concentration</strong> – aplikasi kimia interaktif yang membantu kamu menghitung dan memahami berbagai satuan konsentrasi dengan cepat dan akurat! <br><br>
             🎯 Cocok untuk pelajar, mahasiswa, guru, atau siapapun yang ingin belajar atau bekerja di dunia kimia. <br>
-            💡 Ayo eksplor dan konversi satuan kimia hanya dalam beberapa klik! 🧪🎓
+            💡 Ayo eksplor dan konversi satuan kimia hanya dalam beberapa klik! 
         </p>
     """, unsafe_allow_html=True)
     if st.button("Selanjutnya ➡"):
         st.session_state["halaman"] = "menu"
+
 
 
 def halaman_menu():
