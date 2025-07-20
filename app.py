@@ -69,71 +69,45 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
+# ----------------- Fungsi konversi tambahan -----------------
 def konversi_dua_arah():
-    st.markdown("## 🔄 Konversi Dua Arah Konsentrasi")
+    st.markdown("## 🔁 Konversi Dua Arah")
+    jenis_awal = st.selectbox("Pilih satuan awal:", ["% b/v", "% w/v", "% b/b", "% v/v"])
+    nilai_awal = st.number_input(f"Masukkan nilai {jenis_awal}:", step=0.001)
 
-    semua_opsi = ["PPM", "Molaritas", "Normalitas", "% b/v", "% w/v", "% b/b", "% v/v"]
+    densitas = st.number_input("Masukkan densitas larutan (g/mL):", step=0.001)
+    mr = st.number_input("Masukkan Mr (jika perlu):", step=0.01)
+    eq = st.number_input("Masukkan berat ekuivalen (jika perlu):", step=0.01)
+    valensi = st.number_input("Masukkan valensi (jika perlu):", step=1)
 
-    dari = st.selectbox("Konversi dari:", semua_opsi)
-    ke = st.selectbox("Konversi ke:", semua_opsi)
+    if st.button("Konversi Semua Arah"):
+        if jenis_awal == "% b/v":
+            ppm = nilai_awal * densitas * 10
+            st.success(f"PPM ≈ {ppm:.2f} ppm")
+            st.success(f"Molaritas ≈ {ppm / (mr * 1000):.6f} mol/L")
+            st.success(f"Normalitas ≈ {ppm / (eq * 1000):.6f} N")
 
-    nilai = st.number_input(f"Masukkan nilai dalam {dari}:", step=0.001)
+        elif jenis_awal == "% w/v":
+            ppm = nilai_awal * 10000
+            st.success(f"PPM ≈ {ppm:.2f} ppm")
+            st.success(f"Molaritas ≈ {ppm / (mr * 1000):.6f} mol/L")
+            st.success(f"Normalitas ≈ {ppm / (eq * 1000):.6f} N")
 
-    mr = st.number_input("Mr (jika diperlukan):", step=0.01)
-    eq = st.number_input("Berat ekuivalen (jika diperlukan):", step=0.01)
-    val = st.number_input("Valensi (jika diperlukan):", step=1)
-    dens = st.number_input("Densitas (g/mL, jika diperlukan):", step=0.001)
+        elif jenis_awal == "% b/b":
+            ppm = nilai_awal * densitas * 10
+            st.success(f"PPM ≈ {ppm:.2f} ppm")
+            st.success(f"Molaritas ≈ {ppm / (mr * 1000):.6f} mol/L")
+            st.success(f"Normalitas ≈ {ppm / (eq * 1000):.6f} N")
 
-    hasil = None
+        elif jenis_awal == "% v/v":
+            ppm = nilai_awal * densitas * 10
+            st.success(f"PPM ≈ {ppm:.2f} ppm")
+            st.success(f"Molaritas ≈ {ppm / (mr * 1000):.6f} mol/L")
+            st.success(f"Normalitas ≈ {ppm / (eq * 1000):.6f} N")
 
-    if st.button("Konversi"):
-        if dari == "PPM" and ke == "Molaritas":
-            hasil = ppm_to_molaritas(nilai, mr)
-        elif dari == "PPM" and ke == "Normalitas":
-            hasil = ppm_to_normalitas(nilai, eq)
-        elif dari == "PPM" and ke == "% b/v":
-            hasil = ppm_to_bv(nilai, dens)
-        elif dari == "PPM" and ke == "% w/v":
-            hasil = ppm_to_wv(nilai)
-        elif dari == "PPM" and ke == "% b/b":
-            hasil = ppm_to_bb(nilai, dens)
-        elif dari == "PPM" and ke == "% v/v":
-            hasil = ppm_to_vv(nilai, dens)
-
-        elif dari == "Molaritas" and ke == "PPM":
-            hasil = molaritas_to_ppm(nilai, mr)
-        elif dari == "Molaritas" and ke == "Normalitas":
-            hasil = molaritas_to_normalitas(nilai, val)
-        elif dari == "Molaritas" and ke == "% b/v":
-            hasil = molaritas_to_bv(nilai, mr, dens)
-        elif dari == "Molaritas" and ke == "% w/v":
-            hasil = molaritas_to_wv(nilai, mr)
-        elif dari == "Molaritas" and ke == "% b/b":
-            hasil = molaritas_to_bb(nilai, mr, dens)
-        elif dari == "Molaritas" and ke == "% v/v":
-            hasil = molaritas_to_vv(nilai, mr, dens)
-
-        elif dari == "Normalitas" and ke == "PPM":
-            hasil = normalitas_to_ppm(nilai, eq)
-        elif dari == "Normalitas" and ke == "Molaritas":
-            hasil = normalitas_to_molaritas(nilai, val)
-        elif dari == "Normalitas" and ke == "% w/v":
-            hasil = normalitas_to_wv(nilai, eq)
-        elif dari == "Normalitas" and ke == "% b/v":
-            hasil = normalitas_to_bv(nilai, eq, dens)
-        elif dari == "Normalitas" and ke == "% b/b":
-            hasil = normalitas_to_bb(nilai, eq, dens)
-        elif dari == "Normalitas" and ke == "% v/v":
-            hasil = normalitas_to_vv(nilai, eq, dens)
-
-        if hasil is not None:
-            st.success(f"Hasil: {hasil:.6f} {ke}")
-        else:
-            st.warning("Konversi tidak tersedia atau parameter kurang.")
-
-# Tambahkan ke menu utama jika diinginkan
+# ----------------- Routing untuk Konversi Dua Arah -----------------
+# Tempelkan ini misalnya di akhir fungsi halaman_konversi()
 # konversi_dua_arah()
-
 
 
 # ----------------- Halaman Konversi -----------------
