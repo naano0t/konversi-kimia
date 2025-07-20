@@ -278,34 +278,25 @@ def halaman_penjelasan():
     st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
 
 def halaman_penggunaan():
-     st.markdown("## 📘 Cara Menggunakan Aplikasi My Concentration")
+    st.markdown("## 📘 Cara Menggunakan Aplikasi My Concentration")
     st.info("""
-    🎯 **My Concentration** dirancang untuk memudahkan kamu dalam menghitung dan mengonversi satuan konsentrasi kimia — seperti **PPM**, **Molaritas**, dan **Normalitas** — ke berbagai bentuk lain secara otomatis dan cepat.
+    🎯 **My Concentration** adalah alat bantu pintar untuk menghitung dan mengonversi berbagai satuan konsentrasi larutan kimia — seperti **PPM**, **Molaritas**, dan **Normalitas** — dengan cepat, akurat, dan mudah dipahami.
 
-    📌 **Langkah-langkah Penggunaan:**
-    1. **Pilih kategori konversi**  
-       🔽 Misalnya: PPM, Molaritas, atau Normalitas.
+    🧠 Baik untuk pelajar, pendidik, maupun profesional laboratorium, aplikasi ini menyederhanakan proses perhitungan dengan antarmuka yang ramah pengguna dan visualisasi rumus yang jelas.
 
-    2. **Masukkan nilai awal yang ingin kamu konversi**  
-       ✍️ Contoh: 1200 ppm atau 0.5 mol/L.
+    📌 **Cara Menggunakan:**
+    1. Pilih kategori konversi yang ingin digunakan (PPM, Molaritas, Normalitas)
+    2. Masukkan nilai dan parameter yang diminta, seperti Mr, berat ekuivalen, valensi, atau densitas
+    3. Pilih bentuk satuan tujuan yang ingin dikonversi
+    4. Klik tombol KONVERSI untuk menampilkan hasil dan penjelasan matematisnya
 
-    3. **Pilih jenis konversi tujuan**  
-       🎯 Seperti: ke mg/L, % b/v, % w/v, atau bentuk konsentrasi lain.
-
-    4. **Masukkan data pendukung jika diminta**  
-       ⚖️ Misalnya: Mr (massa molar), berat ekuivalen, densitas, atau valensi.
-
-    5. **Klik tombol KONVERSI**  
-       🧪 Hasil akan muncul langsung beserta penjelasan rumusnya dalam bentuk matematika yang rapi.
-
-    💡 **Siapa yang Cocok Menggunakan Aplikasi Ini?**
-    - 🧑‍🎓 Siswa & Mahasiswa jurusan IPA, Kimia, Farmasi
-    - 👩‍🏫 Guru dan Dosen untuk bahan ajar interaktif
-    - 👩‍🔬 Praktisi lab atau siapa saja yang sering menghitung konsentrasi larutan
+    ✅ Cocok untuk:
+    - 🧑‍🎓 Pelajar dan Mahasiswa Kimia, Farmasi, Biologi
+    - 👩‍🏫 Guru dan Dosen untuk visualisasi materi ajar
+    - 🧪 Laboratorium atau praktisi kimia yang butuh perhitungan cepat dan akurat
     """)
     st.button("⬅ Kembali ke Menu", on_click=lambda: st.session_state.update({"halaman": "menu"}))
     st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
-
 
 def halaman_periodik():
     st.markdown("## 🧬 Tabel Periodik Unsur Kimia")
