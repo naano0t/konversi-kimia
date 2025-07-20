@@ -4,6 +4,7 @@ from PIL import Image
 import base64
 import io
 
+# ----------------- Styling CSS + Background -----------------
 image_path = "Web nackground.png"
 with open(image_path, "rb") as image_file:
     encoded = base64.b64encode(image_file.read()).decode()
@@ -50,6 +51,9 @@ st.markdown(f"""
             margin-bottom: 20px;
         }}
         .info, .warning {{
+            text-shadow: 1px 1px 2px #000000;
+        }}
+        .block-container .stRadio > div {{
             text-shadow: 1px 1px 2px #000000;
         }}
     </style>
