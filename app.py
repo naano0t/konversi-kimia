@@ -43,7 +43,7 @@ st.markdown(f"""
             border: none;
             height: 2px;
             background-color: white;
-            width: 50%;
+            width: 100%;
             margin: 20px auto;
         }}
     </style>
