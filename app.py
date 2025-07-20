@@ -1,22 +1,15 @@
 
-# ----------------- Styling CSS -----------------
 import streamlit as st
-from PIL import Image
 import base64
-import io
 
-# ----------------- Konfigurasi halaman -----------------
-st.set_page_config(page_title="My Concentration", page_icon="⚗", layout="centered")
-
-# ----------------- Styling CSS + Background -----------------
-image_path = "AI background 2.png"
-with open(image_path, "rb") as image_file:
-    encoded = base64.b64encode(image_file.read()).decode()
+# Baca dan encoding gambar latar
+with open("fantasy_chemistry_bg.png", "rb") as file:
+    bg_base64 = base64.b64encode(file.read()).decode()
 
 st.markdown(f"""
     <style>
         .stApp {{
-            background-image: url("data:image/png;base64,{encoded}");
+            background-image: url("data:image/png;base64,{bg_base64}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -24,30 +17,28 @@ st.markdown(f"""
         .title {{
             color: #fff;
             text-align: center;
+            margin-top: 40px;
         }}
         .sub {{
-            text-align: center;
-            font-size: 18px;
             color: #e0e0e0;
-        }}
-        .kelompok-container {{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: -10px;
-            margin-bottom: 10px;
-        }}
-        .kelompok-text {{
             text-align: center;
             font-size: 18px;
-            color: #ffffff;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin-bottom: 20px;
+        }}
+        .team-section {{
+            text-align: center;
+            font-size: 16px;
+            color: #ffd700;
+            margin-bottom: 30px;
         }}
     </style>
 """, unsafe_allow_html=True)
 
-    
+# Contoh tampilan utama
+st.markdown("<h1 class='title'>⚗️ Selamat Datang di My Concentration ⚗️</h1>", unsafe_allow_html=True)
+st.markdown("<div class='team-section'>👩‍🔬 Kelompok 11: Arsal, Danish, Hanna, Raffi, Yasifa 👨‍🔬</div>", unsafe_allow_html=True)
+st.markdown("<p class='sub'>Eksplor dan konversi satuan konsentrasi kimia secara mudah & interaktif!</p>", unsafe_allow_html=True)
+
 # ----------------- Fungsi konversi tambahan -----------------
 def ppm_to_molaritas(ppm, mr):
     try:
