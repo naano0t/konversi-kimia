@@ -16,7 +16,7 @@ st.markdown(f"""
             background-position: center;
             background-repeat: no-repeat;
         }}
-        .title {{
+       .title {{
             color: #fff;
             text-align: center;
             text-shadow: 2px 2px 4px #000000;
@@ -25,7 +25,7 @@ st.markdown(f"""
             text-align: center;
             font-size: 18px;
             color: #e0e0e0;
-            text-shadow: 1px 1px 3px #000000;
+            text-shadow: 1px 1px 2px #000000;
         }}
         .kelompok-container {{
             display: flex;
@@ -40,18 +40,14 @@ st.markdown(f"""
             font-size: 18px;
             color: #ffffff;
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            text-shadow: 1px 1px 3px #000000;
+            text-shadow: 1px 1px 2px #000000;
         }}
-        .divider {{
-            border: none;
-            height: 2px;
-            background: linear-gradient(to right, transparent, white, transparent);
-            margin: 20px auto;
-            width: 100%;
+        .stMarkdown, .stText, .stButton>button, .stRadio label, .stSelectbox label, .stNumberInput label {{
+            color: #ffffff !important;
+            text-shadow: 1px 1px 2px #000000;
         }}
     </style>
 """, unsafe_allow_html=True)
-
 # ----------------- Fungsi konversi tambahan -----------------
 def ppm_to_molaritas(ppm, mr):
     try:
