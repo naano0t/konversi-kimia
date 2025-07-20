@@ -1,40 +1,37 @@
 
 # ----------------- Styling CSS -----------------
 import streamlit as st
+from PIL import Image
 import base64
+import io
 
 # ----------------- Konfigurasi halaman -----------------
 st.set_page_config(page_title="My Concentration", page_icon="⚗", layout="centered")
 
-# ----------------- Styling CSS -----------------
-st.markdown("""
+# ----------------- Styling CSS + Background -----------------
+image_path = "Salinan dari poster trovis.png"
+with open(image_path, "rb") as image_file:
+    encoded = base64.b64encode(image_file.read()).decode()
+
+st.markdown(f"""
     <style>
-        body {
-            background-color: #fdfdff;
-        }
-        .title {
-            color: #5f27cd;
+        .stApp {{
+            background-image: url("data:image/png;base64,{encoded}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }}
+        .title {{
+            color: #fff;
             text-align: center;
-        }
-        .sub {
+        }}
+        .sub {{
             text-align: center;
             font-size: 18px;
-        }
+            color: #e0e0e0;
+        }}
     </style>
 """, unsafe_allow_html=True)
-
-# ----------------- Gambar Link Klik -----------------
-with open("Salinan dari poster trovis.png", "rb") as image_file:
-    encoded_image = base64.b64encode(image_file.read()).decode()
-
-st.markdown(
-    f"""
-    <a href="https://contoh-link.com" target="_blank">
-        <img src="data:image/png;base64,{encoded_image}" width="300">
-    </a>
-    """,
-    unsafe_allow_html=True
-)
 
     
 # ----------------- Fungsi konversi tambahan -----------------
