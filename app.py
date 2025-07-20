@@ -337,7 +337,7 @@ def halaman_konversi():
 
 # ----------------- Halaman lainnya -----------------
 def halaman_utama():
-    st.markdown("<h1 class='title'>⚗️ Selamat Datang di My Concentration ⚗️</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class='title'>⚗ Selamat Datang di My Concentration ⚗</h1>", unsafe_allow_html=True)
     st.markdown("""
         <p class='sub'>
             🔍 Bingung konversi PPM ke Molaritas atau Normalitas? <br>
@@ -346,14 +346,14 @@ def halaman_utama():
             💡 Ayo eksplor dan konversi satuan kimia hanya dalam beberapa klik! 
         </p>
         <hr class='divider'>
-         <div class='kelompok-container'>
+        <div class='kelompok-container'>
             <p class='kelompok-text'>🤖 Dibuat oleh <b>Kelompok 11</b> 💙</p>
             <p class='kelompok-text'>Arsal 🎩, Danish ✨, Hanna 🌸, Raffi 🎮, Yasifa 🎀</p>
         </div>
-        <hr style='border: 2px solid white; width: 80%; margin: 20px auto;'>
     """, unsafe_allow_html=True)
     if st.button("Selanjutnya ➡"):
         st.session_state["halaman"] = "menu"
+
 
 
 def halaman_menu():
