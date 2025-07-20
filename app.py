@@ -1,4 +1,3 @@
-
 import streamlit as st
 from PIL import Image
 import base64
@@ -70,58 +69,113 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ----------------- Fungsi konversi tambahan -----------------
-def konversi_dua_arah():
-    st.markdown("## 🔄 Konversi Dua Arah")
+def ppm_to_molaritas(ppm, mr):
+    try:
+        return ppm / (mr * 1000)
+    except:
+        return None
 
-    jenis = st.selectbox("Pilih jenis konsentrasi:", ["% b/v", "% b/b", "% v/v"])
-    nilai = st.number_input(f"Masukkan nilai {jenis}:", step=0.0001)
+def ppm_to_normalitas(ppm, eq_weight):
+    try:
+        return ppm / (eq_weight * 1000)
+    except:
+        return None
 
-    if jenis == "% b/v":
-        dens = st.number_input("Masukkan densitas larutan (g/mL):", step=0.001)
-        mr = st.number_input("Masukkan Mr:", step=0.01)
-        eq = st.number_input("Masukkan Berat Ekuivalen:", step=0.01)
+def ppm_to_bv(ppm, density):
+    try:
+        return ppm / (density * 10)
+    except:
+        return None
 
-        if st.button("Konversi dari % b/v"):
-            ppm = nilai * dens * 10
-            mol = (nilai * dens * 10) / (mr * 1000)
-            norm = (nilai * dens * 10) / (eq * 1000)
+def ppm_to_wv(ppm):
+    try:
+        return ppm / 10000
+    except:
+        return None
 
-            st.success(f"PPM: {ppm:.4f} ppm")
-            st.success(f"Molaritas: {mol:.6f} mol/L")
-            st.success(f"Normalitas: {norm:.6f} N")
+def ppm_to_bb(ppm, density):
+    try:
+        return ppm / (density * 10)
+    except:
+        return None
 
-    elif jenis == "% b/b":
-        dens = st.number_input("Masukkan densitas larutan (g/mL):", step=0.001)
-        mr = st.number_input("Masukkan Mr:", step=0.01)
-        eq = st.number_input("Masukkan Berat Ekuivalen:", step=0.01)
+def ppm_to_vv(ppm, density):
+    try:
+        return ppm / (density * 10)
+    except:
+        return None
 
-        if st.button("Konversi dari % b/b"):
-            ppm = nilai * dens * 10
-            mol = (ppm) / (mr * 1000)
-            norm = (ppm) / (eq * 1000)
+def molaritas_to_ppm(molaritas, mr):
+    try:
+        return molaritas * mr * 1000
+    except:
+        return None
 
-            st.success(f"PPM: {ppm:.4f} ppm")
-            st.success(f"Molaritas: {mol:.6f} mol/L")
-            st.success(f"Normalitas: {norm:.6f} N")
+def molaritas_to_bv(molaritas, mr, density):
+    try:
+        return (molaritas * mr) / (density * 10)
+    except:
+        return None
 
-    elif jenis == "% v/v":
-        dens = st.number_input("Masukkan densitas larutan (g/mL):", step=0.001)
-        mr = st.number_input("Masukkan Mr:", step=0.01)
-        eq = st.number_input("Masukkan Berat Ekuivalen:", step=0.01)
+def molaritas_to_wv(molaritas, mr):
+    try:
+        return molaritas * mr / 10
+    except:
+        return None
 
-        if st.button("Konversi dari % v/v"):
-            ppm = nilai * dens * 10
-            mol = (ppm) / (mr * 1000)
-            norm = (ppm) / (eq * 1000)
+def molaritas_to_bb(molaritas, mr, density):
+    try:
+        return (molaritas * mr) / (density * 10)
+    except:
+        return None
 
-            st.success(f"PPM: {ppm:.4f} ppm")
-            st.success(f"Molaritas: {mol:.6f} mol/L")
-            st.success(f"Normalitas: {norm:.6f} N")
+def molaritas_to_vv(molaritas, mr, density):
+    try:
+        return (molaritas * mr) / (density * 10)
+    except:
+        return None
 
+def normalitas_to_ppm(normalitas, eq_weight):
+    try:
+        return normalitas * eq_weight * 1000
+    except:
+        return None
 
-# ----------------- Routing untuk Konversi Dua Arah -----------------
-# Tempelkan ini misalnya di akhir fungsi halaman_konversi()
-# konversi_dua_arah()
+def molaritas_to_normalitas(molaritas, valensi):
+    try:
+        return molaritas * valensi
+    except:
+        return None
+
+def normalitas_to_molaritas(normalitas, valensi):
+    try:
+        return normalitas / valensi
+    except:
+        return None
+
+def normalitas_to_wv(normalitas, eq_weight):
+    try:
+        return (normalitas * eq_weight) / 10
+    except:
+        return None
+
+def normalitas_to_bv(normalitas, eq_weight, density):
+    try:
+        return (normalitas * eq_weight) / (density * 10)
+    except:
+        return None
+
+def normalitas_to_bb(normalitas, eq_weight, density):
+    try:
+        return (normalitas * eq_weight) / (density * 10)
+    except:
+        return None
+
+def normalitas_to_vv(normalitas, eq_weight, density):
+    try:
+        return (normalitas * eq_weight) / (density * 10)
+    except:
+        return None
 
 
 # ----------------- Halaman Konversi -----------------
@@ -342,24 +396,24 @@ def halaman_menu():
 def halaman_penjelasan():
     st.markdown("## 🧪 Penjelasan Konsentrasi Kimia")
     st.info("""
-    Dalam ilmu kimia, **konsentrasi** menunjukkan seberapa banyak zat terlarut terdapat dalam sejumlah pelarut atau larutan. Berikut adalah tiga satuan konsentrasi utama yang sering digunakan:
+    Dalam ilmu kimia, *konsentrasi* menunjukkan seberapa banyak zat terlarut terdapat dalam sejumlah pelarut atau larutan. Berikut adalah tiga satuan konsentrasi utama yang sering digunakan:
 
-    🔹 **PPM (Parts Per Million)**
+    🔹 *PPM (Parts Per Million)*
     - Mengukur jumlah zat dalam satu juta bagian larutan.
     - Umumnya digunakan saat konsentrasi sangat kecil, seperti dalam air minum, limbah, atau uji lingkungan.
     - 1 PPM setara dengan 1 mg zat dalam 1 liter larutan.
 
-    🔹 **Molaritas (M)**
+    🔹 *Molaritas (M)*
     - Mengukur jumlah mol zat terlarut dalam setiap 1 liter larutan.
     - Digunakan dalam banyak perhitungan kimia seperti stoikiometri reaksi, titrasi, atau persiapan larutan.
     - Contoh: 1 M = 1 mol zat per liter larutan.
 
-    🔹 **Normalitas (N)**
+    🔹 *Normalitas (N)*
     - Mirip dengan molaritas, tetapi mempertimbangkan jumlah ekuivalen (berdasarkan reaksi kimia tertentu).
     - Cocok untuk reaksi asam-basa atau redoks.
     - Contoh: 1 N HCl berarti 1 mol ion H⁺ per liter larutan.
 
-    ⚗️ Dengan memahami perbedaan dan kegunaannya, kamu bisa memilih satuan yang paling tepat sesuai dengan kebutuhan percobaan atau perhitungan kimia yang dilakukan.
+    ⚗ Dengan memahami perbedaan dan kegunaannya, kamu bisa memilih satuan yang paling tepat sesuai dengan kebutuhan percobaan atau perhitungan kimia yang dilakukan.
     """)
     st.button("⬅ Kembali ke Menu", on_click=lambda: st.session_state.update({"halaman": "menu"}))
     st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
@@ -367,11 +421,11 @@ def halaman_penjelasan():
 def halaman_penggunaan():
     st.markdown("## 📘 Cara Menggunakan Aplikasi My Concentration")
     st.info("""
-    🎯 **My Concentration** adalah alat bantu pintar untuk menghitung dan mengonversi berbagai satuan konsentrasi larutan kimia — seperti **PPM**, **Molaritas**, dan **Normalitas** — dengan cepat, akurat, dan mudah dipahami.
+    🎯 *My Concentration* adalah alat bantu pintar untuk menghitung dan mengonversi berbagai satuan konsentrasi larutan kimia — seperti *PPM, **Molaritas, dan **Normalitas* — dengan cepat, akurat, dan mudah dipahami.
 
     🧠 Baik untuk pelajar, pendidik, maupun profesional laboratorium, aplikasi ini menyederhanakan proses perhitungan dengan antarmuka yang ramah pengguna dan visualisasi rumus yang jelas.
 
-    📌 **Cara Menggunakan:**
+    📌 *Cara Menggunakan:*
     1. Pilih kategori konversi yang ingin digunakan (PPM, Molaritas, Normalitas)
     2. Masukkan nilai dan parameter yang diminta, seperti Mr, berat ekuivalen, valensi, atau densitas
     3. Pilih bentuk satuan tujuan yang ingin dikonversi
