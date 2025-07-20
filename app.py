@@ -329,6 +329,7 @@ def halaman_utama():
             🎯 Cocok untuk pelajar, mahasiswa, guru, atau siapapun yang ingin belajar atau bekerja di dunia kimia. <br>
             💡 Ayo eksplor dan konversi satuan kimia hanya dalam beberapa klik! 
         </p>
+        <p class='footer'>by Kelompok 11 (Arsal, Danish, Hanna, Raffi, Yasifa)</p>
     """, unsafe_allow_html=True)
     if st.button("Selanjutnya ➡"):
         st.session_state["halaman"] = "menu"
