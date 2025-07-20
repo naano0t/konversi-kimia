@@ -4,7 +4,7 @@ from PIL import Image
 import base64
 import io
 
-image_path = "Web nackground.png"
+image_path = "background.png"
 with open(image_path, "rb") as image_file:
     encoded = base64.b64encode(image_file.read()).decode()
 
@@ -19,11 +19,13 @@ st.markdown(f"""
         .title {{
             color: #fff;
             text-align: center;
+            text-shadow: 2px 2px 4px #000000;
         }}
         .sub {{
             text-align: center;
             font-size: 18px;
             color: #e0e0e0;
+            text-shadow: 1px 1px 3px #000000;
         }}
         .kelompok-container {{
             display: flex;
@@ -38,13 +40,14 @@ st.markdown(f"""
             font-size: 18px;
             color: #ffffff;
             font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-shadow: 1px 1px 3px #000000;
         }}
-        hr {{
+        .divider {{
             border: none;
             height: 2px;
-            background-color: white;
-            width: 100%;
+            background: linear-gradient(to right, transparent, white, transparent);
             margin: 20px auto;
+            width: 100%;
         }}
     </style>
 """, unsafe_allow_html=True)
