@@ -59,6 +59,18 @@ def ppm_to_wv(ppm):
     except:
         return None
 
+def ppm_to_bb(ppm, density):
+    try:
+        return ppm / (density * 10)
+    except:
+        return None
+
+def ppm_to_vv(ppm, density):
+    try:
+        return ppm / (density * 10)
+    except:
+        return None
+
 def molaritas_to_ppm(molaritas, mr):
     try:
         return molaritas * mr * 1000
@@ -74,6 +86,18 @@ def molaritas_to_bv(molaritas, mr, density):
 def molaritas_to_wv(molaritas, mr):
     try:
         return molaritas * mr / 10
+    except:
+        return None
+
+def molaritas_to_bb(molaritas, mr, density):
+    try:
+        return (molaritas * mr) / (density * 10)
+    except:
+        return None
+
+def molaritas_to_vv(molaritas, mr, density):
+    try:
+        return (molaritas * mr) / (density * 10)
     except:
         return None
 
@@ -106,6 +130,19 @@ def normalitas_to_bv(normalitas, eq_weight, density):
         return (normalitas * eq_weight) / (density * 10)
     except:
         return None
+
+def normalitas_to_bb(normalitas, eq_weight, density):
+    try:
+        return (normalitas * eq_weight) / (density * 10)
+    except:
+        return None
+
+def normalitas_to_vv(normalitas, eq_weight, density):
+    try:
+        return (normalitas * eq_weight) / (density * 10)
+    except:
+        return None
+
 
 # ----------------- Halaman Konversi -----------------
 def halaman_konversi():
