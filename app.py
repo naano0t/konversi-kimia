@@ -1,30 +1,41 @@
+
+# ----------------- Styling CSS -----------------
 import streamlit as st
+import base64
 
 # ----------------- Konfigurasi halaman -----------------
 st.set_page_config(page_title="My Concentration", page_icon="⚗", layout="centered")
 
 # ----------------- Styling CSS -----------------
-import base64
+st.markdown("""
+    <style>
+        body {
+            background-color: #fdfdff;
+        }
+        .title {
+            color: #5f27cd;
+            text-align: center;
+        }
+        .sub {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-def add_bg_from_local("salinan dari poster trovis.jpg"):
-    with open(salinan dari poster trovis.jpg, "rb") as f:
-        data = f.read()
-        encoded = base64.b64encode(data).decode()
-    st.markdown(
-        f"""
-         <style>
-         .stApp {{
-             background-image: url("data:image/jpg;base64,{encoded}");
-             background-size: cover;
-             background-attachment: fixed;
-             background-position: center;
-         }}
-         </style>
-         """,
-        unsafe_allow_html=True
-    )
+# ----------------- Gambar Link Klik -----------------
+with open("Salinan dari poster trovis.png", "rb") as image_file:
+    encoded_image = base64.b64encode(image_file.read()).decode()
 
-add_bg_from_local("salinan dari poster trovis.jpg")
+st.markdown(
+    f"""
+    <a href="https://contoh-link.com" target="_blank">
+        <img src="data:image/png;base64,{encoded_image}" width="300">
+    </a>
+    """,
+    unsafe_allow_html=True
+)
+
     
 # ----------------- Fungsi konversi tambahan -----------------
 def ppm_to_molaritas(ppm, mr):
