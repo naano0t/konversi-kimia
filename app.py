@@ -268,11 +268,26 @@ def halaman_menu():
         halaman_periodik()
 
 def halaman_penjelasan():
-    st.markdown("## 🧪 Penjelasan Konsentrasi")
+    st.markdown("## 🧪 Penjelasan Konsentrasi Kimia")
     st.info("""
-    1. PPM (mg/L)  
-    2. Normalitas (N)  
-    3. Molaritas (M)  
+    Dalam ilmu kimia, **konsentrasi** menunjukkan seberapa banyak zat terlarut terdapat dalam sejumlah pelarut atau larutan. Berikut adalah tiga satuan konsentrasi utama yang sering digunakan:
+
+    🔹 **PPM (Parts Per Million)**
+    - Mengukur jumlah zat dalam satu juta bagian larutan.
+    - Umumnya digunakan saat konsentrasi sangat kecil, seperti dalam air minum, limbah, atau uji lingkungan.
+    - 1 PPM setara dengan 1 mg zat dalam 1 liter larutan.
+
+    🔹 **Molaritas (M)**
+    - Mengukur jumlah mol zat terlarut dalam setiap 1 liter larutan.
+    - Digunakan dalam banyak perhitungan kimia seperti stoikiometri reaksi, titrasi, atau persiapan larutan.
+    - Contoh: 1 M = 1 mol zat per liter larutan.
+
+    🔹 **Normalitas (N)**
+    - Mirip dengan molaritas, tetapi mempertimbangkan jumlah ekuivalen (berdasarkan reaksi kimia tertentu).
+    - Cocok untuk reaksi asam-basa atau redoks.
+    - Contoh: 1 N HCl berarti 1 mol ion H⁺ per liter larutan.
+
+    ⚗️ Dengan memahami perbedaan dan kegunaannya, kamu bisa memilih satuan yang paling tepat sesuai dengan kebutuhan percobaan atau perhitungan kimia yang dilakukan.
     """)
     st.button("⬅ Kembali ke Menu", on_click=lambda: st.session_state.update({"halaman": "menu"}))
     st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
