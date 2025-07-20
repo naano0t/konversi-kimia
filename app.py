@@ -17,7 +17,7 @@ st.markdown(f"""
             background-position: center;
             background-repeat: no-repeat;
         }}
-      .title {{
+        .title {{
             color: #ffffff;
             text-align: center;
             font-size: 40px;
@@ -53,11 +53,22 @@ st.markdown(f"""
         .info, .warning {{
             text-shadow: 1px 1px 2px #000000;
         }}
-        .block-container .stRadio > div {{
+        .element-container .stMarkdown p,
+        .element-container .stMarkdown h1,
+        .element-container .stMarkdown h2,
+        .element-container .stMarkdown h3,
+        .element-container .stMarkdown h4,
+        .element-container .stMarkdown h5,
+        .element-container .stMarkdown h6,
+        .element-container .stMarkdown li {{
+            text-shadow: 1px 1px 2px #000000 !important;
+        }}
+        .stRadio > div {{
             text-shadow: 1px 1px 2px #000000;
         }}
     </style>
 """, unsafe_allow_html=True)
+
 # ----------------- Fungsi konversi tambahan -----------------
 def ppm_to_molaritas(ppm, mr):
     try:
