@@ -241,17 +241,18 @@ def halaman_konversi():
 
 # ----------------- Halaman lainnya -----------------
 def halaman_utama():
-   if "halaman" not in st.session_state or st.session_state["halaman"] == "utama":
+    st.markdown("<h1 class='title'>⚗️ Selamat Datang di My Concentration ⚗️</h1>", unsafe_allow_html=True)
     st.markdown("""
-    <h1 class='title'>Selamat Datang di My Concentration</h1>
-    <p class='sub'>
-    <b>My Concentration</b> adalah alat bantu cerdas untuk mahasiswa, guru, dan praktisi laboratorium dalam menghitung dan mengonversi berbagai jenis konsentrasi larutan seperti <b>PPM</b>, <b>Molaritas</b>, dan <b>Normalitas</b> secara otomatis dan akurat.<br><br>
-    Bingung hitung konsentrasi? Tenang! Dengan tampilan yang menarik dan penggunaan yang mudah, kamu bisa mengubah satuan ke bentuk lain seperti <b>% b/v</b>, <b>% w/v</b>, atau <b>mg/L</b> hanya dalam sekali klik.<br><br>
-    Cocok untuk pelajar, mahasiswa, pengajar, atau siapa pun yang ingin praktis dan cepat dalam dunia kimia. Yuk, coba sekarang dan rasakan kemudahannya!
-    </p>
+        <p class='sub'>
+            🔍 Bingung konversi PPM ke Molaritas atau Normalitas? <br>
+            🚀 Yuk, gunakan <strong>My Concentration</strong> – aplikasi kimia interaktif yang membantu kamu menghitung dan memahami berbagai satuan konsentrasi dengan cepat dan akurat! <br><br>
+            🎯 Cocok untuk pelajar, mahasiswa, guru, atau siapapun yang ingin belajar atau bekerja di dunia kimia. <br>
+            💡 Ayo eksplor dan konversi satuan kimia hanya dalam beberapa klik! 
+        </p>
     """, unsafe_allow_html=True)
     if st.button("Selanjutnya ➡"):
         st.session_state["halaman"] = "menu"
+
 
 def halaman_menu():
     st.markdown("<h2 class='title'>📂 Menu Utama</h2>", unsafe_allow_html=True)
