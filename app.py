@@ -6,7 +6,7 @@ st.set_page_config(page_title="My Concentration", page_icon="⚗", layout="cente
 # ----------------- Styling CSS -----------------
 import base64
 
-def add_bg_from_local(salinan dari poster trovis.jpg):
+def add_bg_from_local("salinan dari poster trovis.jpg"):
     with open(salinan dari poster trovis.jpg, "rb") as f:
         data = f.read()
         encoded = base64.b64encode(data).decode()
