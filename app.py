@@ -71,39 +71,53 @@ st.markdown(f"""
 
 # ----------------- Fungsi konversi tambahan -----------------
 def konversi_dua_arah():
-    st.markdown("## 🔁 Konversi Dua Arah")
-    jenis_awal = st.selectbox("Pilih satuan awal:", ["% b/v", "% w/v", "% b/b", "% v/v"])
-    nilai_awal = st.number_input(f"Masukkan nilai {jenis_awal}:", step=0.001)
+    st.markdown("## 🔄 Konversi Dua Arah")
 
-    densitas = st.number_input("Masukkan densitas larutan (g/mL):", step=0.001)
-    mr = st.number_input("Masukkan Mr (jika perlu):", step=0.01)
-    eq = st.number_input("Masukkan berat ekuivalen (jika perlu):", step=0.01)
-    valensi = st.number_input("Masukkan valensi (jika perlu):", step=1)
+    jenis = st.selectbox("Pilih jenis konsentrasi:", ["% b/v", "% b/b", "% v/v"])
+    nilai = st.number_input(f"Masukkan nilai {jenis}:", step=0.0001)
 
-    if st.button("Konversi Semua Arah"):
-        if jenis_awal == "% b/v":
-            ppm = nilai_awal * densitas * 10
-            st.success(f"PPM ≈ {ppm:.2f} ppm")
-            st.success(f"Molaritas ≈ {ppm / (mr * 1000):.6f} mol/L")
-            st.success(f"Normalitas ≈ {ppm / (eq * 1000):.6f} N")
+    if jenis == "% b/v":
+        dens = st.number_input("Masukkan densitas larutan (g/mL):", step=0.001)
+        mr = st.number_input("Masukkan Mr:", step=0.01)
+        eq = st.number_input("Masukkan Berat Ekuivalen:", step=0.01)
 
-        elif jenis_awal == "% w/v":
-            ppm = nilai_awal * 10000
-            st.success(f"PPM ≈ {ppm:.2f} ppm")
-            st.success(f"Molaritas ≈ {ppm / (mr * 1000):.6f} mol/L")
-            st.success(f"Normalitas ≈ {ppm / (eq * 1000):.6f} N")
+        if st.button("Konversi dari % b/v"):
+            ppm = nilai * dens * 10
+            mol = (nilai * dens * 10) / (mr * 1000)
+            norm = (nilai * dens * 10) / (eq * 1000)
 
-        elif jenis_awal == "% b/b":
-            ppm = nilai_awal * densitas * 10
-            st.success(f"PPM ≈ {ppm:.2f} ppm")
-            st.success(f"Molaritas ≈ {ppm / (mr * 1000):.6f} mol/L")
-            st.success(f"Normalitas ≈ {ppm / (eq * 1000):.6f} N")
+            st.success(f"PPM: {ppm:.4f} ppm")
+            st.success(f"Molaritas: {mol:.6f} mol/L")
+            st.success(f"Normalitas: {norm:.6f} N")
 
-        elif jenis_awal == "% v/v":
-            ppm = nilai_awal * densitas * 10
-            st.success(f"PPM ≈ {ppm:.2f} ppm")
-            st.success(f"Molaritas ≈ {ppm / (mr * 1000):.6f} mol/L")
-            st.success(f"Normalitas ≈ {ppm / (eq * 1000):.6f} N")
+    elif jenis == "% b/b":
+        dens = st.number_input("Masukkan densitas larutan (g/mL):", step=0.001)
+        mr = st.number_input("Masukkan Mr:", step=0.01)
+        eq = st.number_input("Masukkan Berat Ekuivalen:", step=0.01)
+
+        if st.button("Konversi dari % b/b"):
+            ppm = nilai * dens * 10
+            mol = (ppm) / (mr * 1000)
+            norm = (ppm) / (eq * 1000)
+
+            st.success(f"PPM: {ppm:.4f} ppm")
+            st.success(f"Molaritas: {mol:.6f} mol/L")
+            st.success(f"Normalitas: {norm:.6f} N")
+
+    elif jenis == "% v/v":
+        dens = st.number_input("Masukkan densitas larutan (g/mL):", step=0.001)
+        mr = st.number_input("Masukkan Mr:", step=0.01)
+        eq = st.number_input("Masukkan Berat Ekuivalen:", step=0.01)
+
+        if st.button("Konversi dari % v/v"):
+            ppm = nilai * dens * 10
+            mol = (ppm) / (mr * 1000)
+            norm = (ppm) / (eq * 1000)
+
+            st.success(f"PPM: {ppm:.4f} ppm")
+            st.success(f"Molaritas: {mol:.6f} mol/L")
+            st.success(f"Normalitas: {norm:.6f} N")
+
 
 # ----------------- Routing untuk Konversi Dua Arah -----------------
 # Tempelkan ini misalnya di akhir fungsi halaman_konversi()
