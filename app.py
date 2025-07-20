@@ -278,15 +278,34 @@ def halaman_penjelasan():
     st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
 
 def halaman_penggunaan():
-    st.markdown("## 📘 Penggunaan Aplikasi")
-    st.warning("""
-    1. Pilih kategori konversi (PPM, Normalitas, Molaritas)  
-    2. Masukkan data yang sesuai  
-    3. Pilih jenis konversi tujuan  
-    4. Tekan tombol KONVERSI untuk melihat hasil.
+     st.markdown("## 📘 Cara Menggunakan Aplikasi My Concentration")
+    st.info("""
+    🎯 **My Concentration** dirancang untuk memudahkan kamu dalam menghitung dan mengonversi satuan konsentrasi kimia — seperti **PPM**, **Molaritas**, dan **Normalitas** — ke berbagai bentuk lain secara otomatis dan cepat.
+
+    📌 **Langkah-langkah Penggunaan:**
+    1. **Pilih kategori konversi**  
+       🔽 Misalnya: PPM, Molaritas, atau Normalitas.
+
+    2. **Masukkan nilai awal yang ingin kamu konversi**  
+       ✍️ Contoh: 1200 ppm atau 0.5 mol/L.
+
+    3. **Pilih jenis konversi tujuan**  
+       🎯 Seperti: ke mg/L, % b/v, % w/v, atau bentuk konsentrasi lain.
+
+    4. **Masukkan data pendukung jika diminta**  
+       ⚖️ Misalnya: Mr (massa molar), berat ekuivalen, densitas, atau valensi.
+
+    5. **Klik tombol KONVERSI**  
+       🧪 Hasil akan muncul langsung beserta penjelasan rumusnya dalam bentuk matematika yang rapi.
+
+    💡 **Siapa yang Cocok Menggunakan Aplikasi Ini?**
+    - 🧑‍🎓 Siswa & Mahasiswa jurusan IPA, Kimia, Farmasi
+    - 👩‍🏫 Guru dan Dosen untuk bahan ajar interaktif
+    - 👩‍🔬 Praktisi lab atau siapa saja yang sering menghitung konsentrasi larutan
     """)
     st.button("⬅ Kembali ke Menu", on_click=lambda: st.session_state.update({"halaman": "menu"}))
     st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
+
 
 def halaman_periodik():
     st.markdown("## 🧬 Tabel Periodik Unsur Kimia")
