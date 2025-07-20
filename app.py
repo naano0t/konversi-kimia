@@ -4,22 +4,28 @@ import streamlit as st
 st.set_page_config(page_title="My Concentration", page_icon="⚗", layout="centered")
 
 # ----------------- Styling CSS -----------------
-st.markdown("""
-    <style>
-        body {
-            background-color: #fdfdff;
-        }
-        .title {
-            color: #5f27cd;
-            text-align: center;
-        }
-        .sub {
-            text-align: center;
-            font-size: 18px;
-        }
-    </style>
-""", unsafe_allow_html=True)
+import base64
 
+def add_bg_from_local(salinan dari poster trovis.jpg):
+    with open(salinan dari poster trovis.jpg, "rb") as f:
+        data = f.read()
+        encoded = base64.b64encode(data).decode()
+    st.markdown(
+        f"""
+         <style>
+         .stApp {{
+             background-image: url("data:image/jpg;base64,{encoded}");
+             background-size: cover;
+             background-attachment: fixed;
+             background-position: center;
+         }}
+         </style>
+         """,
+        unsafe_allow_html=True
+    )
+
+add_bg_from_local("salinan dari poster trovis.jpg")
+    
 # ----------------- Fungsi konversi tambahan -----------------
 def ppm_to_molaritas(ppm, mr):
     try:
