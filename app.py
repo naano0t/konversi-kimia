@@ -9,7 +9,7 @@ import io
 st.set_page_config(page_title="My Concentration", page_icon="⚗", layout="centered")
 
 # ----------------- Styling CSS + Background -----------------
-image_path = "Salinan dari poster trovis.png"
+image_path = "background.png"
 with open(image_path, "rb") as image_file:
     encoded = base64.b64encode(image_file.read()).decode()
 
@@ -32,6 +32,7 @@ st.markdown(f"""
         }}
     </style>
 """, unsafe_allow_html=True)
+
 
     
 # ----------------- Fungsi konversi tambahan -----------------
