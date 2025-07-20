@@ -9,7 +9,7 @@ import io
 st.set_page_config(page_title="My Concentration", page_icon="⚗", layout="centered")
 
 # ----------------- Styling CSS + Background -----------------
-image_path = "AI background.png"
+image_path = "AI background 2.png"
 with open(image_path, "rb") as image_file:
     encoded = base64.b64encode(image_file.read()).decode()
 
@@ -30,8 +30,23 @@ st.markdown(f"""
             font-size: 18px;
             color: #e0e0e0;
         }}
+        .kelompok-container {{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }}
+        .kelompok-text {{
+            text-align: center;
+            font-size: 18px;
+            color: #ffffff;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }}
     </style>
 """, unsafe_allow_html=True)
+
     
 # ----------------- Fungsi konversi tambahan -----------------
 def ppm_to_molaritas(ppm, mr):
