@@ -2,7 +2,7 @@
 import streamlit as st
 from PIL import Image
 import base64
-import i
+import io
 
 image_path = "Web nackground.png"
 with open(image_path, "rb") as image_file:
