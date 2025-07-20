@@ -338,20 +338,21 @@ def halaman_konversi():
 def halaman_utama():
     st.markdown("<h1 class='title'>⚗️ Selamat Datang di My Concentration ⚗️</h1>", unsafe_allow_html=True)
     st.markdown("""
-        <div class='kelompok-container'>
-            <p class='kelompok-text'>🤖 Dibuat oleh <b>Kelompok 11</b> 💙</p>
-            <p class='kelompok-text'>Arsal 🎩, Danish ✨, Hanna 🌸, Raffi 🎮, Yasifa 🎀</p>
-        </div>
-        <div class='separator'></div>
         <p class='sub'>
             🔍 Bingung konversi PPM ke Molaritas atau Normalitas? <br>
             🚀 Yuk, gunakan <strong>My Concentration</strong> – aplikasi kimia interaktif yang membantu kamu menghitung dan memahami berbagai satuan konsentrasi dengan cepat dan akurat! <br><br>
             🎯 Cocok untuk pelajar, mahasiswa, guru, atau siapapun yang ingin belajar atau bekerja di dunia kimia. <br>
             💡 Ayo eksplor dan konversi satuan kimia hanya dalam beberapa klik! 
         </p>
+        <hr class='divider'>
+        <div class='kelompok-container'>
+            <p class='kelompok-text'>🤖 Dibuat oleh <b>Kelompok 11</b> 💙</p>
+            <p class='kelompok-text'>Arsal 🎩, Danish ✨, Hanna 🌸, Raffi 🎮, Yasifa 🎀</p>
+        </div>
     """, unsafe_allow_html=True)
     if st.button("Selanjutnya ➡"):
         st.session_state["halaman"] = "menu"
+
 
 def halaman_menu():
     st.markdown("<h2 class='title'>📂 Menu Utama</h2>", unsafe_allow_html=True)
