@@ -4,6 +4,17 @@ import base64
 import io
 
 # ----------------- Styling CSS + Background -----------------
+mode = st.sidebar.selectbox("Pilih Mode Tampilan", ["Light Mode", "Dark Mode"])
+
+if mode == "Dark Mode":
+    background_color = "#1e1e1e"
+    text_color = "#ffffff"
+    shadow_color = "#000000"
+else:
+    background_color = "#f0f0f0"
+    text_color = "#000000"
+    shadow_color = "#888888"
+
 image_path = "Web background.kesekian.png"
 with open(image_path, "rb") as image_file:
     encoded = base64.b64encode(image_file.read()).decode()
@@ -11,10 +22,12 @@ with open(image_path, "rb") as image_file:
 st.markdown(f"""
     <style>
         .stApp {{
+            background-color: {background_color};
             background-image: url("data:image/png;base64,{encoded}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            
         }}
         .title {{
             color: #ffffff;
