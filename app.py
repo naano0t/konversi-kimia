@@ -5,7 +5,9 @@ import io
 
 # ----------------- Styling CSS + Background -----------------
 # Ubah warna berdasarkan mode
-if mode = "Dark Mode":
+mode = st.sidebar.selectbox("Pilih Mode Tampilan", ["Light Mode", "Dark Mode"])
+
+if mode == "Dark Mode":
     bg_color = "#000000"
     text_color = "#ffffff"
     shadow_color = "#000000"
