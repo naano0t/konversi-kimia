@@ -4,7 +4,7 @@ import base64
 import io
 
 # ----------------- Styling CSS + Background -----------------
-image_path = "Web nackground.png"
+image_path = "Web background.kesekian.png"
 with open(image_path, "rb") as image_file:
     encoded = base64.b64encode(image_file.read()).decode()
 
