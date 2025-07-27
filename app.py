@@ -4,16 +4,17 @@ import base64
 import io
 
 # ----------------- Styling CSS + Background -----------------
-mode = st.sidebar.selectbox("Pilih Mode Tampilan", ["Light Mode", "Dark Mode"])
-
+# Ubah warna berdasarkan mode
 if mode == "Dark Mode":
-    background_color = "#1e1e1e"
+    bg_color = "#000000"
     text_color = "#ffffff"
     shadow_color = "#000000"
+    divider_color = "white"
 else:
-    background_color = "#f0f0f0"
+    bg_color = "#f4f4f4"
     text_color = "#000000"
     shadow_color = "#888888"
+    divider_color = "#333333"
 
 image_path = "Web background.kesekian.png"
 with open(image_path, "rb") as image_file:
@@ -22,11 +23,11 @@ with open(image_path, "rb") as image_file:
 st.markdown(f"""
     <style>
         .stApp {{
-            background-color: {background_color};
             background-image: url("data:image/png;base64,{encoded}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-color: {bg_color};
             
         }}
         .title {{
@@ -455,8 +456,53 @@ def halaman_penggunaan():
 def halaman_periodik():
     st.markdown("## 🧬 Tabel Periodik Unsur Kimia")
     st.image("https://gurubelajarku.com/wp-content/uploads/2019/12/Tabel-Periodik-Unsur-Kimia.jpg", caption="Sumber: gurubelajarku.com")
+
+    # Database Ar langsung di dalam kode
+massa_atom = {
+    "H": 1.008, "He": 4.0026, "Li": 6.94, "Be": 9.0122, "B": 10.81, "C": 12.01,
+    "N": 14.01, "O": 16.00, "F": 18.998, "Ne": 20.180, "Na": 22.99, "Mg": 24.305,
+    "Al": 26.982, "Si": 28.085, "P": 30.974, "S": 32.06, "Cl": 35.45, "Ar": 39.95,
+    "K": 39.10, "Ca": 40.08, "Sc": 44.96, "Ti": 47.87, "V": 50.94, "Cr": 52.00,
+    "Mn": 54.94, "Fe": 55.85, "Co": 58.93, "Ni": 58.69, "Cu": 63.55, "Zn": 65.38,
+    "Ga": 69.72, "Ge": 72.63, "As": 74.92, "Se": 78.97, "Br": 79.90, "Kr": 83.80,
+    "Rb": 85.47, "Sr": 87.62, "Y": 88.91, "Zr": 91.22, "Nb": 92.91, "Mo": 95.95,
+    "Tc": 98.00, "Ru": 101.1, "Rh": 102.9, "Pd": 106.4, "Ag": 107.9, "Cd": 112.4,
+    "In": 114.8, "Sn": 118.7, "Sb": 121.8, "Te": 127.6, "I": 126.9, "Xe": 131.3,
+    "Cs": 132.9, "Ba": 137.3, "La": 138.9, "Ce": 140.1, "Pr": 140.9, "Nd": 144.2,
+    "Pm": 145.0, "Sm": 150.4, "Eu": 152.0, "Gd": 157.3, "Tb": 158.9, "Dy": 162.5,
+    "Ho": 164.9, "Er": 167.3, "Tm": 168.9, "Yb": 173.0, "Lu": 175.0, "Hf": 178.5,
+    "Ta": 180.9, "W": 183.8, "Re": 186.2, "Os": 190.2, "Ir": 192.2, "Pt": 195.1,
+    "Au": 197.0, "Hg": 200.6, "Tl": 204.4, "Pb": 207.2, "Bi": 208.9, "Po": 209.0,
+    "At": 210.0, "Rn": 222.0, "Fr": 223.0, "Ra": 226.0, "Ac": 227.0, "Th": 232.0,
+    "Pa": 231.0, "U": 238.0
+}
+
+# Fungsi untuk menghitung Mr
+def hitung_mr(rumus):
+    pola = r'([A-Z][a-z]?)(\d*)'
+    hasil = re.findall(pola, rumus)
+    total_mr = 0
+    for unsur, jumlah in hasil:
+        if unsur not in massa_atom:
+            return f"Unsur '{unsur}' tidak dikenal."
+        jumlah = int(jumlah) if jumlah else 1
+        total_mr += massa_atom[unsur] * jumlah
+    return round(total_mr, 3)
+
+# Antarmuka Streamlit
+st.title("Kalkulator Mr (Massa Molekul Relatif)")
+st.write("Masukkan rumus kimia (contoh: H2O, CO2, C6H12O6)")
+
+rumus = st.text_input("Rumus kimia")
+
+if rumus:
+    hasil = hitung_mr(rumus)
+    st.success(f"Mr dari {rumus} adalah: {hasil}")
+
+    
     st.button("⬅ Kembali ke Menu", on_click=lambda: st.session_state.update({"halaman": "menu"}))
     st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
+
 
 # ----------------- Routing -----------------
 if "halaman" not in st.session_state:
