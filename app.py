@@ -473,9 +473,8 @@ massa_atom = {
     "At": 210.0, "Rn": 222.0, "Fr": 223.0, "Ra": 226.0, "Ac": 227.0, "Th": 232.0,
     "Pa": 231.0, "U": 238.0
 }
-# Fungsi hitung Mr
+# Fungsi menghitung Mr
 def hitung_mr(rumus):
-    import re
     pola = r'([A-Z][a-z]?)(\d*)'
     hasil = re.findall(pola, rumus)
     total = 0
@@ -486,14 +485,10 @@ def hitung_mr(rumus):
         total += massa_atom[unsur] * jumlah
     return round(total, 3)
 
+# Fungsi halaman periodik
 def halaman_periodik():
     st.markdown("## 🧬 Tabel Periodik Unsur Kimia")
-    st.image("https://gurubelajarku.com/wp-content/uploads/2019/12/Tabel-Periodik-Unsur-Kimia.jpg", caption="Sumber: gurubelajarku.com")
-
-     rumus = st.text_input("Masukkan rumus kimia", key="input_mr")
-    if st.button("Hitung Mr"):
-        hasil = hitung_mr(rumus)
-        st.success(f"Mr dari {rumus} adalah {hasil}")
+    st.image("https://gurubelajarku.com/wp-content/uploads/2019/12/Tabel-Periodik-Unsur-Kimia.jpg", caption="Sumber: gurubelajarku.com") 
 
     col1, col2 = st.columns(2)
     with col1:
@@ -502,8 +497,46 @@ def halaman_periodik():
         st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
 
     st.markdown("---")
-    st.subheader("🔬 Kalkulator Mr (Massa Molekul Relatif)")
-    rumus = st.text_input("Masukkan rumus kimia (misalnya: H2O, CO2, C6H12O6)", key="mr_rumus_periodik")
+    st.subheader("🔬 Kalkulator Mr (Interaktif dari Klik Unsur)")
+
+    # Inisialisasi session_state
+    if "rumus_kimia" not in st.session_state:
+        st.session_state.rumus_kimia = ""
+
+    st.markdown("### Klik unsur untuk menyusun rumus:")
+    kolom = st.columns(10)
+    unsur_list = list(massa_atom.keys())
+
+    for i, unsur in enumerate(unsur_list):
+        if kolom[i % 10].button(unsur):
+            st.session_state.rumus_kimia += unsur
+
+    # Input angka indeks (opsional, misalnya untuk H2O → klik H, lalu ketik 2)
+    angka = st.text_input("Tambahkan angka indeks (opsional)", key="angka_indeks")
+    if angka and angka.isdigit():
+        if st.button("Tambahkan indeks ke rumus"):
+            st.session_state.rumus_kimia += angka
+
+    # Tampilkan rumus hasil klik
+    st.text_input("Rumus dari klik unsur:", value=st.session_state.rumus_kimia, key="klik_rumus_input")
+
+    # Tombol reset rumus
+    if st.button("🔁 Reset Rumus"):
+        st.session_state.rumus_kimia = ""
+
+    # Hitung Mr dari hasil klik
+    if st.button("Hitung Mr dari klik unsur"):
+        hasil = hitung_mr(st.session_state.rumus_kimia)
+        st.success(f"Mr = {hasil}")
+
+    st.markdown("---")
+    st.subheader("✏️ Atau ketik rumus manual")
+
+    # Input manual
+    rumus_manual = st.text_input("Masukkan rumus kimia", key="manual_input")
+    if st.button("Hitung Mr dari input manual"):
+        hasil = hitung_mr(rumus_manual)
+        st.success(f"Mr dari {rumus_manual} adalah: {hasil}")
 
    
 
