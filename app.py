@@ -475,6 +475,7 @@ massa_atom = {
 }
 # Fungsi hitung Mr
 def hitung_mr(rumus):
+    import re
     pola = r'([A-Z][a-z]?)(\d*)'
     hasil = re.findall(pola, rumus)
     total = 0
@@ -487,7 +488,12 @@ def hitung_mr(rumus):
 
 def halaman_periodik():
     st.markdown("## 🧬 Tabel Periodik Unsur Kimia")
-    st.image("https://gurubelajarku.com/wp-content/uploads/2019/12/Tabel-Periodik-Unsur-Kimia.jpg", caption="Sumber: gurubelajarku.com") 
+    st.image("https://gurubelajarku.com/wp-content/uploads/2019/12/Tabel-Periodik-Unsur-Kimia.jpg", caption="Sumber: gurubelajarku.com")
+
+     rumus = st.text_input("Masukkan rumus kimia", key="input_mr")
+    if st.button("Hitung Mr"):
+        hasil = hitung_mr(rumus)
+        st.success(f"Mr dari {rumus} adalah {hasil}")
 
     col1, col2 = st.columns(2)
     with col1:
@@ -499,9 +505,7 @@ def halaman_periodik():
     st.subheader("🔬 Kalkulator Mr (Massa Molekul Relatif)")
     rumus = st.text_input("Masukkan rumus kimia (misalnya: H2O, CO2, C6H12O6)", key="mr_rumus_periodik")
 
-    if rumus:
-        hasil = hitung_mr(rumus)
-        st.success(f"Mr dari {rumus} adalah: {hasil}")
+   
 
 # ----------------- Routing -----------------
 if "halaman" not in st.session_state:
