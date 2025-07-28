@@ -455,10 +455,6 @@ def halaman_penggunaan():
     st.button("⬅ Kembali ke Menu", on_click=lambda: st.session_state.update({"halaman": "menu"}))
     st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
 
-def halaman_periodik():
-    st.markdown("## 🧬 Tabel Periodik Unsur Kimia")
-    st.image("https://gurubelajarku.com/wp-content/uploads/2019/12/Tabel-Periodik-Unsur-Kimia.jpg", caption="Sumber: gurubelajarku.com") 
-
 massa_atom = {
     "H": 1.008, "He": 4.0026, "Li": 6.94, "Be": 9.0122, "B": 10.81, "C": 12.01,
     "N": 14.01, "O": 16.00, "F": 18.998, "Ne": 20.180, "Na": 22.99, "Mg": 24.305,
@@ -477,51 +473,35 @@ massa_atom = {
     "At": 210.0, "Rn": 222.0, "Fr": 223.0, "Ra": 226.0, "Ac": 227.0, "Th": 232.0,
     "Pa": 231.0, "U": 238.0
 }
-# 2. Fungsi kalkulasi Mr
+# Fungsi hitung Mr
 def hitung_mr(rumus):
     pola = r'([A-Z][a-z]?)(\d*)'
     hasil = re.findall(pola, rumus)
     total = 0
     for unsur, jumlah in hasil:
         if unsur not in massa_atom:
-            return f"Unsur '{unsur}' tidak ditemukan."
+            return f"Unsur '{unsur}' tidak dikenal."
         jumlah = int(jumlah) if jumlah else 1
         total += massa_atom[unsur] * jumlah
     return round(total, 3)
 
-# 3. UI Streamlit: Tabel Periodik & Input Rumus
-st.title("Tabel Periodik dan Kalkulator Mr")
+def halaman_periodik():
+    st.markdown("## 🧬 Tabel Periodik Unsur Kimia")
+    st.image("https://gurubelajarku.com/wp-content/uploads/2019/12/Tabel-Periodik-Unsur-Kimia.jpg", caption="Sumber: gurubelajarku.com") 
 
-# --- Bagian Input Rumus Kimia ---
-with st.expander("🧪 Kalkulator Mr (Massa Molekul Relatif)"):
-    rumus = st.text_input("Masukkan rumus kimia (misalnya: H2O, CO2, C6H12O6)")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.button("⬅ Kembali ke Menu", on_click=lambda: st.session_state.update({"halaman": "menu"}))
+    with col2:
+        st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
+
+    st.markdown("---")
+    st.subheader("🔬 Kalkulator Mr (Massa Molekul Relatif)")
+    rumus = st.text_input("Masukkan rumus kimia (misalnya: H2O, CO2, C6H12O6)", key="mr_rumus_periodik")
+
     if rumus:
         hasil = hitung_mr(rumus)
         st.success(f"Mr dari {rumus} adalah: {hasil}")
-
-# --- Bagian Tabel Periodik Interaktif Sederhana ---
-st.markdown("### 🧱 Tabel Periodik (klik untuk salin ke rumus)")
-
-# Buat grid unsur
-kolom = st.columns(10)
-unsur_list = list(massa_atom.keys())
-
-if "rumus_temp" not in st.session_state:
-    st.session_state.rumus_temp = ""
-
-for i, unsur in enumerate(unsur_list):
-    if kolom[i % 10].button(unsur):
-        st.session_state.rumus_temp += unsur
-
-st.text_input("Rumus dari klik unsur:", value=st.session_state.rumus_temp, key="final_rumus")
-
-if st.button("Hitung Mr dari klik unsur"):
-    hasil = hitung_mr(st.session_state.rumus_temp)
-    st.success(f"Mr = {hasil}")
-
-    st.button("⬅ Kembali ke Menu", on_click=lambda: st.session_state.update({"halaman": "menu"}))
-    st.button("🏠 Halaman Utama", on_click=lambda: st.session_state.update({"halaman": "utama"}))
-
 
 # ----------------- Routing -----------------
 if "halaman" not in st.session_state:
